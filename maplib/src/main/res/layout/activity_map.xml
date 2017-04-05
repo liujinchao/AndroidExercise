@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MapActivity" >
+
+    <TextView
+        android:id="@+id/baidu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:maxLines="5"
+        android:text="百度" />
+
+    <TextView
+        android:id="@+id/tengxun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gaode"
+        android:layout_below="@+id/gaode"
+        android:layout_marginTop="30dp"
+        android:maxLines="5"
+        android:text="腾讯" />
+
+    <TextView
+        android:id="@+id/gaode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/baidu"
+        android:layout_below="@+id/baidu"
+        android:layout_marginTop="30dp"
+        android:maxLines="5"
+        android:text="高德" />
+
+    <Button
+        android:id="@+id/addfence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始定位" />
+    <TextView
+        android:id="@+id/other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tengxun"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:maxLines="5"
+        android:text="点击启调"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        android:layout_weight="2.89"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/other"
+        android:text=" "/>
+
+</RelativeLayout>
