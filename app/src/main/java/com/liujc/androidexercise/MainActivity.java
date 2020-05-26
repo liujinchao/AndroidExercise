@@ -1,11 +1,15 @@
 package com.liujc.androidexercise;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
+import com.android.toolkits.methodtime.ExecTime;
 import com.liujc.androidexercise.fileupload.FileUploadActivity;
 import com.liujc.maplib.MapActivity;
 
@@ -19,23 +23,20 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private ComponentName defaultComponent;
+    private ComponentName testComponent;
+    private PackageManager packageManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        initTestIcon();
         initView();
     }
 
-    private void initView() {
-
-//        findViewById(R.id.btn_map).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                jumpToTarget(MapActivity.class);
-//            }
-//        });
-    }
     @OnClick({R.id.btn_map,R.id.btn_sencond,R.id.file_upload})
     public void onClick(View view){
         switch (view.getId()){
@@ -52,16 +53,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("TAG",doGetTest());
                     }
                 }).start();
-
-//                doGetUser();
-//                Linkify.addLinks(textView, Linkify.PHONE_NUMBERS);
                 break;
             default:
                 break;
         }
     }
 
-    private void jumpToTarget(Class target){
+    @ExecTime
+    public void jumpToTarget(Class target){
         Intent intent = new Intent(MainActivity.this, target);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -116,4 +115,79 @@ public class MainActivity extends AppCompatActivity {
         }
         return "";
     }
+
+    private void initTestIcon() {
+//        //拿到当前activity注册的组件名称
+//        ComponentName componentName = getComponentName();
+
+        //拿到我们注册的MainActivity组件
+        defaultComponent = new ComponentName(this, "com.liujc.androidexercise.MainActivity");  //拿到默认的组件
+        //拿到我注册的别名test组件
+        testComponent = new ComponentName(this, "com.liujc.androidexercise.test");
+
+        packageManager = getApplicationContext().getPackageManager();
+
+    }
+
+    private void initView() {
+        Button btnOne=findViewById(R.id.btn_one);
+        btnOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeIcon(view);
+            }
+        });
+        Button btnTwo=findViewById(R.id.btn_two);
+        btnTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeDefaultIcon(view);
+            }
+        });
+    }
+
+    @ExecTime
+    public void changeIcon(View view) {
+        disableComponent(defaultComponent);
+        enableComponent(testComponent);
+    }
+
+    @ExecTime
+    public void changeDefaultIcon(View view) {
+        enableComponent(defaultComponent);
+        disableComponent(testComponent);
+    }
+
+    /**
+     * 启用组件
+     *
+     * @param componentName
+     */
+    private void enableComponent(ComponentName componentName) {
+        int state = packageManager.getComponentEnabledSetting(componentName);
+        if (state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+            //已经启用
+            return;
+        }
+        packageManager.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
+    /**
+     * 禁用组件
+     *
+     * @param componentName
+     */
+    private void disableComponent(ComponentName componentName) {
+        int state = packageManager.getComponentEnabledSetting(componentName);
+        if (state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
+            //已经禁用
+            return;
+        }
+        packageManager.setComponentEnabledSetting(componentName,
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
 }

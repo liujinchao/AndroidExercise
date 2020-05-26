@@ -3,8 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidExercise.iml" filepath="$PROJECT_DIR$/AndroidExercise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/AndroidExercise-app.iml" filepath="$PROJECT_DIR$/app/AndroidExercise-app.iml" group="AndroidExercise/app" />
+      <module fileurl="file://$PROJECT_DIR$/maplib/AndroidExercise-maplib.iml" filepath="$PROJECT_DIR$/maplib/AndroidExercise-maplib.iml" group="AndroidExercise/maplib" />
+      <module fileurl="file://$PROJECT_DIR$/Test-AndroidExercise.iml" filepath="$PROJECT_DIR$/Test-AndroidExercise.iml" group="AndroidExercise" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/maplib/maplib.iml" filepath="$PROJECT_DIR$/maplib/maplib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/methodtime/methodtime.iml" filepath="$PROJECT_DIR$/methodtime/methodtime.iml" group="AndroidExercise/methodtime" />
     </modules>
   </component>
 </project>

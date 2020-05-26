@@ -1,1 +1,1 @@
-include ':app', ':maplib'
+include ':app', ':maplib', ':methodtime'
